@@ -36,6 +36,7 @@ passport.use(new FacebookStrategy({   //Fb authentication details has to be prov
     },
     function(accessToken, refreshToken,profile, done){
       process.nextTick(function(){
+        console.log(profile); //profile contains all the personal data returned by Facebook to our application
         var query = User.findOne({'fbId':profile.id}); //checking if the user is already registered in the database 
         query.exec(function(err,oldUser){
           if(oldUser){
