@@ -36,10 +36,10 @@ passport.use(new FacebookStrategy({   //Fb authentication details has to be prov
     },
     function(accessToken, refreshToken,profile, done){
       process.nextTick(function(){
-        var query = User.findOne({'fbId:profile.id'}); //checking if the user is already registered in the database 
+        var query = User.findOne({'fbId':profile.id}); //checking if the user is already registered in the database 
         query.exec(function(err,oldUser){
           if(oldUser){
-            Console..log("User Exists" + oldUser.name + 'logged In!!');
+            Console.log("User Exists" + oldUser.name + 'logged In!!');
             done(null,oldUser);
           }else {
             var newUser = new User(); //Else register the newUser 
