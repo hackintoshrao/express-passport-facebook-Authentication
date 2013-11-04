@@ -8,5 +8,5 @@ exports.index = function(req, res){
 };
 
 exports.loggedin = function(req,res){
-	res.render('loggedin',{title:'Welcome To InterestShip',user:req.user});
+	res.render('loggedin',{title:'Welcome To InterestShip',user:req.user});//req.user is an array , use Jade looping at fetch all the values in it 
 };
