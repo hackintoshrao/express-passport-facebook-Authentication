@@ -31,7 +31,7 @@ passport.deserializeUser(function(id,done){
 
 passport.use(new FacebookStrategy({   //Fb authentication details has to be provided and  callback is the URL to be redirected by Fb after successfull login
     clientID:config.development.fb.appId,
-    clientSecret:config.development.fb.appSecret;
+    clientSecret:config.development.fb.appSecret, 
     callbackURL:config.developement.fb.url + 'fbauthed'
     },
     function(accessToken, refreshToken,profile, done){
