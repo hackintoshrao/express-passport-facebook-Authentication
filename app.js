@@ -87,7 +87,16 @@ app.get('/logout',function(req,res){
   res.logOut();
   res.redirect('/');
 });
+app.get('restricted',ensureAuthentication, function(req,res){//test Url for restricted links 
+  res.render('restriction_test');
+});
 
 http.createServer(app).listen(app.get('port'), function(){
   console.log("Express server listening on port " + app.get('port'));
 });
+function ensureAuthentication(req,res,next){ //function to be used to grant access only if the user is authenticated 
+  if(req.isAuthenticated()){ 
+    return next();
+   res.redirect('/'); 
+  }
+}
