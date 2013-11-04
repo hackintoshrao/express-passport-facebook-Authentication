@@ -18,9 +18,16 @@ var User = require('./models/User.js'); //databse configurations
 var passport = require('passport'),
     FacebookStrategy = require('passport-facebook').Strategy;
 
-passport.serializeUser(function(user,done){
+passport.serializeUser(function(user,done){  //passports serialize method is used to maintain the session data 
   done(null,user.id);
 });    
+
+passport.deserializeUser(function(id,done){
+  User.findOne({fbId:id},function(err,user){
+    done(err,user);
+  });
+
+});
 
 passport.use(new FacebookStrategy({   //Fb authentication details has to be provided and  callback is the URL to be redirected by Fb after successfull login
     clientID:config.development.fb.appId,
